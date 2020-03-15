@@ -1,0 +1,8 @@
+D:\Desktop\2019-National\AplicatieBiblioteca\AplicatieBiblioteca\bin\Debug\AplicatieBiblioteca.exe
+D:\Desktop\2019-National\AplicatieBiblioteca\AplicatieBiblioteca\bin\Debug\AplicatieBiblioteca.pdb
+D:\Desktop\2019-National\AplicatieBiblioteca\AplicatieBiblioteca\obj\Debug\AplicatieBiblioteca.csprojAssemblyReference.cache
+D:\Desktop\2019-National\AplicatieBiblioteca\AplicatieBiblioteca\obj\Debug\AplicatieBiblioteca.Properties.Resources.resources
+D:\Desktop\2019-National\AplicatieBiblioteca\AplicatieBiblioteca\obj\Debug\AplicatieBiblioteca.StartBiblioteca.resources
+D:\Desktop\2019-National\AplicatieBiblioteca\AplicatieBiblioteca\obj\Debug\AplicatieBiblioteca.csproj.GenerateResource.cache
+D:\Desktop\2019-National\AplicatieBiblioteca\AplicatieBiblioteca\obj\Debug\AplicatieBiblioteca.exe
+D:\Desktop\2019-National\AplicatieBiblioteca\AplicatieBiblioteca\obj\Debug\AplicatieBiblioteca.pdb
