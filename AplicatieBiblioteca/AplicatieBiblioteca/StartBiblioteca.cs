@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.IO;
+using System.Globalization;
 
 namespace AplicatieBiblioteca
 {
@@ -22,6 +23,8 @@ namespace AplicatieBiblioteca
         QUERY que = new QUERY();
         private void StartBiblioteca_Load(object sender, EventArgs e)
         {
+            string fn = Application.StartupPath + @"\Resurse\Imagini\altele\biblioteca1.jpg";
+            this.pictureBox1.Image = Image.FromFile(fn);
             que.reseedDB();
             sterge();
             initializare();
@@ -70,18 +73,105 @@ namespace AplicatieBiblioteca
                 //@idcit,@idcart,@dimp,@dres
                 command.Parameters.Add("idcit", SqlDbType.Int).Value = int.Parse(sirSP[0]);
                 command.Parameters.Add("idcart", SqlDbType.Int).Value = int.Parse(sirSP[1]);
-                MessageBox.Show(sirSP[2]);
-
+                //MessageBox.Show(sirSP[2]);
+                // DateTime time=DateTime.ParseExact(sirSP[2], "mm / dd / yyyy hh / mm / ss AM / PM", CultureInfo.InvariantCulture);
+                //MessageBox.Show(time.ToString());
                 //convert to datetimefailed
-                command.Parameters.Add("dimp", SqlDbType.DateTime).Value = DateTime.Parse(sirSP[2]);
-                command.Parameters.Add("dres", SqlDbType.DateTime).Value = DateTime.Parse(sirSP[3]);
+                command.Parameters.Add("dimp", SqlDbType.VarChar).Value = sirSP[2];
+                command.Parameters.Add("dres", SqlDbType.VarChar).Value = sirSP[3];
 
                 conn.openConnection();
                 command.ExecuteNonQuery();
                 conn.closeConnection();
-
             }
 
+            fn = Application.StartupPath + @"\Resurse\rezervari.txt";
+            reader = new StreamReader(fn);
+
+            while ((sir = reader.ReadLine()) != null)
+            {
+                sirSP = sir.Split(split);
+
+                command = new SqlCommand();
+                command.CommandText = "INSERT INTO Rezervari(IdCititor,IdCarte,DataRezervare,StatusRezervare) VALUES(@idcit,@idcart,@dat,@stat)";
+                command.Connection = conn.GetConnection();
+
+                //@idcit,@idcart,@dat,@stat
+                command.Parameters.Add("idcit", SqlDbType.Int).Value = int.Parse(sirSP[0]);
+                command.Parameters.Add("idcart", SqlDbType.Int).Value = int.Parse(sirSP[1]);
+                command.Parameters.Add("dat", SqlDbType.VarChar).Value = sirSP[2];
+                command.Parameters.Add("stat", SqlDbType.VarChar).Value = int.Parse(sirSP[3]);
+
+                conn.openConnection();
+                command.ExecuteNonQuery();
+                conn.closeConnection();
+            }
+
+            fn = Application.StartupPath + @"\Resurse\utilizatori.txt";
+            reader = new StreamReader(fn);
+
+            while ((sir = reader.ReadLine()) != null)
+            {
+                sirSP = sir.Split(split);
+
+                command = new SqlCommand();
+                command.CommandText = "INSERT INTO Utilizatori(TipUtilizator,NumePrenume,Email,Parola) VALUES(@tip,@nm,@em,@pas)";
+                command.Connection = conn.GetConnection();
+
+                //@tip,@nm,@em,@pas
+                command.Parameters.Add("tip", SqlDbType.Int).Value = int.Parse(sirSP[0]);
+                command.Parameters.Add("nm", SqlDbType.VarChar).Value = sirSP[1];
+                command.Parameters.Add("em", SqlDbType.VarChar).Value = sirSP[2];
+                string parola = criptare(sirSP[3]);
+                command.Parameters.Add("pas", SqlDbType.VarChar).Value = parola;
+
+                conn.openConnection();
+                command.ExecuteNonQuery();
+                conn.closeConnection();
+            }
+        }
+        public string criptare(string s)
+        {
+            int l = s.Length;
+            char letter;
+            char nextxhar;
+            //MessageBox.Show(s);
+            for (int i = 0; i < l; i++)
+            {
+                letter = s[i];
+                if (char.IsDigit(letter))
+                {
+                    int x = (int)letter;
+                    string nextch = (57 - x).ToString();
+                    s = s.Substring(0, l - (l - i)) + nextch + s.Substring(i + 1);
+                }
+                else if (char.IsLower(letter))
+                {
+                    if (letter == 'z')
+                    {
+                        s = s.Substring(0, l - (l - i)) + "a" + s.Substring(i + 1);
+                    }
+                    else
+                    {
+                        nextxhar = (char)(((int)letter) + 1);
+                        s = s.Substring(0, l - (l - i)) + nextxhar.ToString() + s.Substring(i + 1);
+                    }
+                }
+                else if (char.IsUpper(letter))
+                {
+                    if (letter == 'A')
+                    {
+                        s = s.Substring(0, l - (l - i)) + "Z" + s.Substring(i + 1);
+                    }
+                    else
+                    {
+                        nextxhar = (char)(((int)letter) - 1);
+                        s = s.Substring(0, l - (l - i)) + nextxhar.ToString() + s.Substring(i + 1);
+                    }
+                }
+            }
+            //MessageBox.Show(s);
+            return s;
         }
         public void sterge()
         {
@@ -116,6 +206,14 @@ namespace AplicatieBiblioteca
             conn.openConnection();
             command.ExecuteNonQuery();
             conn.closeConnection();
+        }
+
+        private void button_start_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            LogareBiblioteca log = new LogareBiblioteca();
+            log.ShowDialog();
+            this.Close();
         }
     }
 }

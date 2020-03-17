@@ -44,7 +44,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BibliotecarBiblioteca.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BibliotecarBiblioteca.Designer.cs">
+      <DependentUpon>BibliotecarBiblioteca.cs</DependentUpon>
+    </Compile>
     <Compile Include="CONNECT.cs" />
+    <Compile Include="LogareBiblioteca.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LogareBiblioteca.Designer.cs">
+      <DependentUpon>LogareBiblioteca.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QUERY.cs" />
@@ -54,6 +66,13 @@
     <Compile Include="StartBiblioteca.Designer.cs">
       <DependentUpon>StartBiblioteca.cs</DependentUpon>
     </Compile>
+    <Compile Include="UTILIZATORI.cs" />
+    <EmbeddedResource Include="BibliotecarBiblioteca.resx">
+      <DependentUpon>BibliotecarBiblioteca.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LogareBiblioteca.resx">
+      <DependentUpon>LogareBiblioteca.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

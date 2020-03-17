@@ -1,8 +1,9 @@
-﻿CREATE TABLE [dbo].[Imprumuturi]
-(
-	[IdImprumut] INT NOT NULL PRIMARY KEY IDENTITY, 
-    [IdCititor] INT NULL, 
-    [IdCarte] INT NULL, 
-    [DataImprumut] DATETIME NULL, 
-    [DataRestituire] DATETIME NULL
-)
+﻿CREATE TABLE [dbo].[Imprumuturi] (
+    [IdImprumut]     INT      IDENTITY (1, 1) NOT NULL,
+    [IdCititor]      INT      NULL,
+    [IdCarte]        INT      NULL,
+    [DataImprumut]   VARCHAR(50) NULL,
+    [DataRestituire] VARCHAR(50) NULL,
+    PRIMARY KEY CLUSTERED ([IdImprumut] ASC)
+);
+

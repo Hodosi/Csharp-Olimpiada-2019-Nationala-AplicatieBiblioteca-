@@ -1,8 +1,9 @@
-﻿CREATE TABLE [dbo].[Rezervari]
-(
-	[IdRezervare] INT NOT NULL PRIMARY KEY IDENTITY, 
-    [IdCititor] INT NULL, 
-    [IdCarte] INT NULL, 
-    [DataRezervare] DATETIME NULL, 
-    [StatusRezervare] INT NULL
-)
+﻿CREATE TABLE [dbo].[Rezervari] (
+    [IdRezervare]     INT      IDENTITY (1, 1) NOT NULL,
+    [IdCititor]       INT      NULL,
+    [IdCarte]         INT      NULL,
+    [DataRezervare]   VARCHAR(50) NULL,
+    [StatusRezervare] INT      NULL,
+    PRIMARY KEY CLUSTERED ([IdRezervare] ASC)
+);
+

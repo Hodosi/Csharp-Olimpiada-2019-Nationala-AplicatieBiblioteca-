@@ -6,3 +6,4 @@ D:\Desktop\2019-National\AplicatieBiblioteca\AplicatieBiblioteca\obj\Debug\Aplic
 D:\Desktop\2019-National\AplicatieBiblioteca\AplicatieBiblioteca\obj\Debug\AplicatieBiblioteca.csproj.GenerateResource.cache
 D:\Desktop\2019-National\AplicatieBiblioteca\AplicatieBiblioteca\obj\Debug\AplicatieBiblioteca.exe
 D:\Desktop\2019-National\AplicatieBiblioteca\AplicatieBiblioteca\obj\Debug\AplicatieBiblioteca.pdb
+D:\Desktop\2019-National\AplicatieBiblioteca\AplicatieBiblioteca\obj\Debug\AplicatieBiblioteca.LogareBiblioteca.resources
